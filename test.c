@@ -22,14 +22,7 @@ int culc_time(int x,int y,int C, int cf,int cs,int tf,int ts){
     int d=y-x;
     int d1=(C-d*cs)/(cf-cs);
     if(d1<0) return -1;
-
-
-    if(d1>d){
-        d1=d;
-    }
-    else if((d-d1)*cs < C  ) {
-        return -1;
-    }
+    if(d1>d)d1=d;
     int time=d1*tf+(d-d1)*ts;
  /*   printf("kai exo san d1=%d kai ts=%d kai tf=%d\n",d1,ts,tf);
     printf("vrika xrono %d\n",time); */
