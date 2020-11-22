@@ -99,20 +99,14 @@ int main()
 
 
 
-    for(i = 0; i < sizeof(a)/sizeof(a[0]); i++)
-        printf("%2d ", a[i]);
-    printf("\n");
 
-    for(i = 0; i < sizeof(a)/sizeof(a[0]); i++)
-        printf("%2d ", b[i]);
-    printf("\n");
+
+
 
     /*STARTING THE DISTANCES*/
     qsort(di, K, sizeof(int), comparator);
 
-    for(i = 0; i < K; i++)
-        printf("%2d ", di[i]);
-    printf("\n");
+
 
 
 
@@ -125,7 +119,6 @@ int main()
         int C=b[i];
         x= check_car( di, D, K, C,  cf, cs, tf, ts , T);
         if (x==1)break;
-        printf("apotelesma %d \n",x);
         i++;
         if(i==N)break;
     }
