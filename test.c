@@ -18,10 +18,11 @@ int comparator (const void * p1, const void * p2)
 
 
 int culc_time(int x,int y,int C, int cf,int cs,int tf,int ts){
-    /* printf(" eimai ston ipologismo anamesa se x=%d kai y=%d \n",x,y);   */
+    /* printf(" eimai ston ipologismo anamesa se x=%d kai y=%d \n",x,y);  */
     int d=y-x;
     int d1=(C-d*cs)/(cf-cs);
-    return d1*tf+(d-d1)*ts;
+    int time=d1*tf+(d-d1)*ts;
+    return time ;
 }
 
 int check_car(int* di,int D,int K,int C, int cf,int cs,int tf,int ts ,int T){
@@ -31,8 +32,9 @@ int check_car(int* di,int D,int K,int C, int cf,int cs,int tf,int ts ,int T){
         temp=culc_time( di[i-1], di[i], C,  cf, cs, tf, ts);
         time=time+temp;
     }
-    temp=culc_time( di[K], D, C, cf, cs, tf, ts);
+    temp=culc_time( di[K-1], D, C, cf, cs, tf, ts);
     time=time+temp;
+     /* printf("ipologisa san xrono %d",time); */
     if (time<T) return 1;
     else return 0;
 }
@@ -42,14 +44,17 @@ int check_car(int* di,int D,int K,int C, int cf,int cs,int tf,int ts ,int T){
 
 int main()
 {
-
-    int N=3,K=5,D=800,T=10;
-    int di[5]={30, 234, 123, 55, 2};
+/*
+    int N=2,K=2,D=10,T=18;
+    int di[2]={5,3};
     int ts=2,cs=1,tf=1,cf=2;
 
-    int a[3] = {10, 5, 11};   /*kostos*/
-    int b[3] = {8, 7, 9};       /*xor kausimon*/
+    int a[2] = {10, 20};   
+    int b[2] = {4,6};  */
 
+    int N,K,D,T;
+    int ts,cs,tf,cf;
+    int a[400000],b[40000],di[400000];
 
     scanf("%d", &N);scanf("%d", &K);scanf("%d", &D);scanf("%d", &T);
     for(int i=0;i<N;i++){
@@ -97,17 +102,23 @@ int main()
 
 
 
+/*
 
+    for(i = 0; i < sizeof(a)/sizeof(a[0]); i++)
+        printf("%2d ", a[i]);
+    printf("\n");
 
-
-
-
-
+    for(i = 0; i < sizeof(a)/sizeof(a[0]); i++)
+        printf("%2d ", b[i]);
+    printf("\n");
+*/
     /*STARTING THE DISTANCES*/
     qsort(di, K, sizeof(int), comparator);
-
-
-
+/*
+    for(i = 0; i < K; i++)
+        printf("%2d ", di[i]);
+    printf("\n");
+*/
 
 
 
@@ -119,6 +130,7 @@ int main()
         int C=b[i];
         x= check_car( di, D, K, C,  cf, cs, tf, ts , T);
         if (x==1)break;
+        printf("apotelesma %d \n",x);
         i++;
         if(i==N)break;
     }
