@@ -18,23 +18,36 @@ int comparator (const void * p1, const void * p2)
 
 
 int culc_time(int x,int y,int C, int cf,int cs,int tf,int ts){
-    /* printf(" eimai ston ipologismo anamesa se x=%d kai y=%d \n",x,y);  */
+     /*printf(" eimai ston ipologismo anamesa se x=%d kai y=%d \n",x,y);*/
     int d=y-x;
     int d1=(C-d*cs)/(cf-cs);
+    if(d1<0) return -1;
+
+
+    if(d1>d){
+        d1=d;
+    }
+    else if((d-d1)*cs < C  ) {
+        return -1;
+    }
     int time=d1*tf+(d-d1)*ts;
+ /*   printf("kai exo san d1=%d kai ts=%d kai tf=%d\n",d1,ts,tf);
+    printf("vrika xrono %d\n",time); */
     return time ;
 }
 
 int check_car(int* di,int D,int K,int C, int cf,int cs,int tf,int ts ,int T){
     int temp;
     int time=culc_time(0, di[0], C,  cf, cs, tf, ts);
+    if(time== -1)return 0;
     for (int i=1;i<K;i++){
         temp=culc_time( di[i-1], di[i], C,  cf, cs, tf, ts);
+        if(temp== -1)return 0;
         time=time+temp;
     }
     temp=culc_time( di[K-1], D, C, cf, cs, tf, ts);
+    if(temp== -1)return 0;
     time=time+temp;
-     /* printf("ipologisa san xrono %d",time); */
     if (time<T) return 1;
     else return 0;
 }
@@ -43,19 +56,18 @@ int check_car(int* di,int D,int K,int C, int cf,int cs,int tf,int ts ,int T){
 
 
 int main()
-{
-/*
-    int N=2,K=2,D=10,T=18;
-    int di[2]={5,3};
+{ /*
+
+    int N=2,K=1,D=1000000000,T=2000000000;
+    int di[1]={1};
     int ts=2,cs=1,tf=1,cf=2;
 
-    int a[2] = {10, 20};   
-    int b[2] = {4,6};  */
+    int a[2] = {111, 101};   
+    int b[2] = {1000000000-2,1000000000-2};  */
 
-    int N,K,D,T;
+  /*  int N,K,D,T;
     int ts,cs,tf,cf;
 
-/*
     N=2;K=2;D=10;T=18;
 
     int a[N],b[N],di[D];
@@ -64,9 +76,12 @@ int main()
 
     a[0]=10; a[1]=20;   
     b[0]=4; b[1]=6; 
+*/
 
 
-    */
+    int N,K,D,T;
+    int ts,cs,tf,cf;
+    
 
     scanf("%d", &N);    scanf("%d", &K);   scanf("%d", &D);   scanf("%d", &T);
     int a[N],b[N],di[D];
@@ -77,7 +92,7 @@ int main()
         scanf("%d", &di[i]);
     }
     scanf("%d", &ts);scanf("%d", &cs);scanf("%d", &tf);scanf("%d", &cf);
-    
+  
 
     /* SORTING THE ARRAYS */
 
@@ -114,8 +129,8 @@ int main()
     /*END OF SORTING*/ 
 
 
-
 /*
+
 
     for(i = 0; i < sizeof(a)/sizeof(a[0]); i++)
         printf("%2d ", a[i]);
@@ -138,14 +153,13 @@ int main()
 
 /* CALC T */
     int x=0;
-    i=0;
+    i=N-1;
     while( 1 ){
         int C=b[i];
         x= check_car( di, D, K, C,  cf, cs, tf, ts , T);
         if (x==1)break;
-        printf("apotelesma %d \n",x);
-        i++;
-        if(i==N)break;
+        i--;
+        if(i==-1)break;
     }
     if(x==0){
         x=-1;
@@ -153,7 +167,7 @@ int main()
     else {
         x=a[i];
     }
-    printf("%d",x);
+    printf("%d\n",x);
 
 
 
