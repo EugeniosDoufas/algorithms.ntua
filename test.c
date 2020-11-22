@@ -54,17 +54,30 @@ int main()
 
     int N,K,D,T;
     int ts,cs,tf,cf;
-    int a[400000],b[40000],di[400000];
 
-    scanf("%d", &N);scanf("%d", &K);scanf("%d", &D);scanf("%d", &T);
+/*
+    N=2;K=2;D=10;T=18;
+
+    int a[N],b[N],di[D];
+    di[0]=5;di[1]=3;
+    ts=2;cs=1;tf=1;cf=2;
+
+    a[0]=10; a[1]=20;   
+    b[0]=4; b[1]=6; 
+
+
+    */
+
+    scanf("%d", &N);    scanf("%d", &K);   scanf("%d", &D);   scanf("%d", &T);
+    int a[N],b[N],di[D];
     for(int i=0;i<N;i++){
-        scanf("%d", &a[i]);scanf("%d", &b[i]);
+        scanf("%d", &a[i]);    scanf("%d", &b[i]);
     }
-    for(int i=0;i<K;i++){
-        scanf("%d", &di[i]);scanf("%d", &di[i]);
+    for(int i=0; i<K; i++){
+        scanf("%d", &di[i]);
     }
     scanf("%d", &ts);scanf("%d", &cs);scanf("%d", &tf);scanf("%d", &cf);
-
+    
 
     /* SORTING THE ARRAYS */
 
